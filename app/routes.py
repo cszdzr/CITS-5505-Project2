@@ -122,6 +122,12 @@ def course(coursename):
     course = Course.query.filter_by(name=coursename).first_or_404()
     return render_template('course.html', course=course)
 
+@app.route('/assessment/<coursename>')
+@login_required
+def assessment(coursename):
+    course = Course.query.filter_by(name=coursename).first_or_404()
+    return render_template(course.assessment_file)
+
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required

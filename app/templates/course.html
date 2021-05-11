@@ -11,10 +11,11 @@
     <hr>
     <div class="row">
         <p>
-            <a href="#" class="btn btn-primary" style="float:right;">Take Quiz</a>
+            <a href="{{ url_for('assessment', coursename=course.name) }}" class="btn btn-primary" style="float:right;">Take Quiz</a>
         </p>
     </div>
     <hr>
 </div>
 
 {% endblock %}
+ 
