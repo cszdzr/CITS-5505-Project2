@@ -20,7 +20,7 @@ class Course(db.Model):
     assessment_file = db.Column(db.String(128))
     thumbnail = db.Column(db.String(128))
 
-    def __repr__(self):
+    def __repr__(self): 
         return '<Course {}>'.format(self.name)
 
 #u = Course(name="Reverse Parallel Park", content_url='<iframe width="560" height="315" src="https://www.youtube.com/embed/l4LcfZeS4qw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', assessment_file="rpp_test.html", thumbnail='https://i.ytimg.com/vi/l4LcfZeS4qw/hqdefault.jpg')

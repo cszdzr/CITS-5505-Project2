@@ -116,6 +116,12 @@ def user(username):
     return render_template('user.html', user=user, posts=posts.items,
                            next_url=next_url, prev_url=prev_url, form=form)
 
+@app.route('/course/<coursename>')
+@login_required
+def course(coursename):
+    course = Course.query.filter_by(name=coursename).first_or_404()
+    return render_template('course.html', course=course)
+
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
