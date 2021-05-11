@@ -13,6 +13,12 @@ followers = db.Table(
     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
 )
 
+class Courses(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True, unique=True)
+    content_url = db.Column(db.String(128))
+    assessment_file = db.Column(db.String(128))
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
