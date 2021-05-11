@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
     EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
-from app.models import User, Post
+from app.models import User, Post, Course
 from app.email import send_password_reset_email
 
 
@@ -27,7 +27,8 @@ def index():
 @app.route('/explore')
 @login_required
 def explore():
-    return render_template('explore.html', title='Explore')
+    courses = Course.query.all()
+    return render_template('explore.html', title='Explore', courses=courses)
 
 
 @app.route('/login', methods=['GET', 'POST'])
