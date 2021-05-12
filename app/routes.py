@@ -4,7 +4,7 @@ from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
-    EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm
+    EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm, RPPForm
 from app.models import User, Post, Course
 from app.email import send_password_reset_email
 
@@ -126,7 +126,10 @@ def course(coursename):
 @login_required
 def assessment(coursename):
     course = Course.query.filter_by(name=coursename).first_or_404()
-    return render_template(course.assessment_file)
+    form = None
+    if course.assessment_file == 'rpp_test.html':
+        form = RPPForm()
+    return render_template('assessment.html', form=form)
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
