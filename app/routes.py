@@ -149,8 +149,8 @@ def result(coursename):
             result+=1
         if form.question5.data == "3":
             result+=1
-        flash(result)
-    return render_template('result.html')
+        #flash(result)
+    return render_template('result.html', result = int(result/5*100))
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
