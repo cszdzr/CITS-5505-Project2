@@ -153,6 +153,14 @@ def result(coursename):
     return render_template('result.html', result = int(result/5*100))
 
 
+@app.route('/overall_results', methods = ['POST'])
+@login_required
+def overall_results():
+
+
+    return render_template('overall_results.html')
+
+
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
