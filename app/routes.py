@@ -16,8 +16,8 @@ def before_request():
         db.session.commit()
 
 
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+@app.route('/index', methods=['GET'])
 def index():
     if current_user.is_authenticated:
         return redirect(url_for('explore'))
@@ -122,14 +122,20 @@ def course(coursename):
     course = Course.query.filter_by(name=coursename).first_or_404()
     return render_template('course.html', course=course)
 
-@app.route('/assessment/<coursename>')
+@app.route('/assessment/<coursename>', methods=['GET'])
 @login_required
 def assessment(coursename):
     course = Course.query.filter_by(name=coursename).first_or_404()
     form = None
     if course.assessment_file == 'rpp_test.html':
         form = RPPForm()
-    return render_template('assessment.html', form=form)
+    return render_template('assessment.html', form=form, course=course)
+
+@app.route('/result/<coursename>', methods=['POST'])
+@login_required
+def result(coursename):
+    flash('test')
+    return render_template('result.html')
 
 
 @app.route('/edit_profile', methods=['GET', 'POST'])

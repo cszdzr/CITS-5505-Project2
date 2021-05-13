@@ -5,7 +5,20 @@
 
 <div class="container">
 
-{{ wtf.quick_form(form) }}
+    <form action="{{ url_for('result', coursename=course.name) }}" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        {{ form.question1.label }}<br>
+        {{ form.question1 }}
+        {{ form.question2.label }}<br>
+        {{ form.question2 }}
+        {{ form.question3.label }}<br>
+        {{ form.question3 }}
+        {{ form.question4.label }}<br>
+        {{ form.question4 }}
+        {{ form.question5.label }}<br>
+        {{ form.question5 }}
+        <p style="float: right;">{{ form.submit() }}</p>
+    </form>
 
 </div>
 
