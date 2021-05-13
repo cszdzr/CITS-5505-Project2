@@ -134,7 +134,22 @@ def assessment(coursename):
 @app.route('/result/<coursename>', methods=['POST'])
 @login_required
 def result(coursename):
-    flash('test')
+    course = Course.query.filter_by(name=coursename).first_or_404()
+    form = None
+    if course.assessment_file == 'rpp_test.html':
+        form = RPPForm()
+        result = 0
+        if form.question1.data == "2":
+            result+=1
+        if form.question2.data == "2":
+            result+=1
+        if form.question3.data == "1":
+            result+=1
+        if form.question4.data == "1":
+            result+=1
+        if form.question5.data == "3":
+            result+=1
+        flash(result)
     return render_template('result.html')
 
 
