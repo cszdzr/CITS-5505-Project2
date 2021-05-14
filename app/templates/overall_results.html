@@ -3,13 +3,17 @@
 
 {% block app_content %}
 
-<div class="row-fluid">
+<h1>
+    Overall Results for {{ current_user.username }} 
+</h1>
+
+<ul class="list-group">
 
 {% for result in results %}
-        {% include '_result.html' %}
+    {% include '_result.html' %}
 {% endfor %}
 
-</div>
+</ul>
 
 
 {% endblock %}

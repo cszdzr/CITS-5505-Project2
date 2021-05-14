@@ -150,7 +150,7 @@ def result(coursename):
         if form.question5.data == "3":
             result+=1
         score = int(result/5*100)
-        new = Enrollment(course_id = course.id, user_id = current_user.id, score = score)
+        new = Enrollment(course_id = course.id, user_id = current_user.id, score = score, course_name = course.name)
         db.session.add(new)
         db.session.commit()
     return render_template('result.html', result = score)

@@ -1,4 +1,4 @@
-<p>
-    {{ result.course_name }}: {{ result.score }}% on {{ result.time_of_completion }}
-</p>
+<li class="list-group-item">
+    {{ result.course_name }}: {{ result.score }}% on {{ result.time_of_completion.strftime('%Y-%m-%d') }}
+</li>
 
