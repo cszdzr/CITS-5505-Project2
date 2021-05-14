@@ -158,7 +158,8 @@ def result(coursename):
 @app.route('/overall_results', methods = ['GET'])
 @login_required
 def overall_results():
-    return render_template('overall_results.html')
+    results = Enrollment.query.filter_by(user_id=current_user.id).all()
+    return render_template('overall_results.html', results=results)
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required

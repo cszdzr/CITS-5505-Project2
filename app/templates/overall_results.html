@@ -3,5 +3,13 @@
 
 {% block app_content %}
 
+<div class="row-fluid">
+
+{% for result in results %}
+        {% include '_result.html' %}
+{% endfor %}
+
+</div>
+
 
 {% endblock %}
