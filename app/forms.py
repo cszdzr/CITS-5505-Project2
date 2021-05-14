@@ -43,31 +43,6 @@ class ResetPasswordForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
 
-
-class EditProfileForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
-    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
-    submit = SubmitField('Submit')
-
-    def __init__(self, original_username, *args, **kwargs):
-        super(EditProfileForm, self).__init__(*args, **kwargs)
-        self.original_username = original_username
-
-    def validate_username(self, username):
-        if username.data != self.original_username:
-            user = User.query.filter_by(username=self.username.data).first()
-            if user is not None:
-                raise ValidationError('Please use a different username.')
-
-
-class EmptyForm(FlaskForm):
-    submit = SubmitField('Submit')
-
-
-class PostForm(FlaskForm):
-    post = TextAreaField('Say something', validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
 class RPPForm(FlaskForm):
     question1 = RadioField('How big must the parking spot be for you to be able to fit into it easily?', choices=[(1,'A) 1 times the length of your car'),(2,'B) 1.5 times the length of your car'),(3,'C) 2 times the length of your car')], validators=[DataRequired()])
     question2 = RadioField('When should you initially start turning into the parking space?', choices=[(1,'A) Before the back end of the front car is visible in the triangular window'),(2,'B) When the back end of the front car is visible in the triangular window'),(3,'C) After the back end of the front car has completely left the triangular window')], validators=[DataRequired()])
