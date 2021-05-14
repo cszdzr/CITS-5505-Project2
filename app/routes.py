@@ -5,7 +5,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm, \
     EmptyForm, PostForm, ResetPasswordRequestForm, ResetPasswordForm, RPPForm
-from app.models import User, Post, Course
+from app.models import User, Post, Course, Enrollment
 from app.email import send_password_reset_email
 
 
@@ -149,9 +149,16 @@ def result(coursename):
             result+=1
         if form.question5.data == "3":
             result+=1
-        #flash(result)
-    return render_template('result.html', result = int(result/5*100))
+        score = int(result/5*100)
+        new = Enrollment(course_id = course.id, user_id = current_user.id, score = score)
+        db.session.add(new)
+        db.session.commit()
+    return render_template('result.html', result = score)
 
+@app.route('/overall_results', methods = ['GET'])
+@login_required
+def overall_results():
+    return render_template('overall_results.html')
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
