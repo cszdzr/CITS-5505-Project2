@@ -1,19 +1,9 @@
-Requirements:
-flask-wtf
-flask
-python-dotenv
-flask-sqlalchemy
-flask-migrate
-flask-login
-email-validator
-flask-mail
-pyjwt
-flask-bootstrap
+git clone -b master https://github.com/cszdzr/CITS-5505-Project2.git <br>
 
-pip install -r requirements.txt
+pip install -r requirements.txt <br>
 
-flask db migrate -m "setup"
-flask db upgrade
+flask db migrate -m "setup" <br>
+flask db upgrade <br>
 
 flask shell
   from app.models import Course
