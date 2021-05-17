@@ -12,4 +12,4 @@ flask shell <br>
 >db.session.add(u) <br>
 >db.session.commit() <br>
 
->flask run <br>
+flask run <br>
